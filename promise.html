@@ -1,0 +1,33 @@
+<script>
+function loadScript(src) {
+  return new Promise(function(resolve, reject) {
+    let script = document.createElement('script');
+    script.src = src;
+
+    script.onload = () =>{ 
+        console.log("resolved   " + script);
+        resolve()
+    };
+    script.onerror = () => reject(new Error(`Script load error for ${src}`));
+
+    document.head.append(script);
+  });
+}
+
+loadScript("C:/Users/abalu3/Documents/javascript/jsexercise/article/promise-chaining/one.js")
+  .then(function(value) {
+    return loadScript("C:/Users/abalu3/Documents/javascript/jsexercise/article/promise-chaining/two.js");
+  })
+  .then(function(value) {
+    return loadScript("C:/Users/abalu3/Documents/javascript/jsexercise/article/promise-chaining/three.js");
+  })
+  .then(function(value) {
+    // use functions declared in scripts
+    // to show that they indeed loaded
+    one();
+    two();
+    three();
+  });
+
+
+  </script>

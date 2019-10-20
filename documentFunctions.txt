@@ -1,0 +1,20 @@
+document.queryselector
+document.createElement('<tagname>');
+document.textcontent
+document.appendchild
+document.creatTextNode('value to be inserted in tag created by createelement')
+to combine created element and text node give appendchild eg:
+variableOfCreateElement.appendChild(variableOfTextNode);
+
+to display in webpage:
+document.querySelector('after_which_element').appendChild(variable_to_be_inserted);
+
+
+addEventListener('click', callbackFunction);
+ul.childern--> property to get all list items in array.
+li.children[index].checked--> checks for checkbox whether its checked
+ul.removeChild(li[index])--> removes the particular list
+
+
+.setAtrributes('id', 'name');
+

@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      height: 2000px;
+      /* make body scrollable, the tooltip should work after the scroll */
+    }
+
+    .tooltip {
+      /* some styles for the tooltip, you can use your own instead */
+      position: fixed;
+      top:0;
+      left:0;
+      padding: 10px 20px;
+      border: 1px solid #b3c9ce;
+      border-radius: 4px;
+      text-align: center;
+      font: italic 14px/1.3 sans-serif;
+      color: #333;
+      background: #fff;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+    }
+  </style>
+</head>
+
+<body>
+
+  <p>LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa</p>
+  <p>LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa</p>
+
+  <button data-tooltip="the tooltip is longer than the element">Short button</button>
+  <button data-tooltip="HTML<br>tooltip">One more button</button>
+
+  <p>Scroll the page to make buttons appear on the top, check if the tooltips show up correctly.</p>
+
+
+  <script>
+    document.addEventListener('mouseover', function(event){
+        let target = event.target;
+        let toolTip = event.target.dataset.tooltip;
+        let bcr = target.getBoundingClientRect();
+
+        if(!toolTip) return ;
+
+        let elem = document.createElement('div');
+        elem.className = 'tooltip';
+        elem.innerHTML = toolTip;
+        document.body.append(elem);
+
+        let left = bcr.left + target.offsetWidth/2 - elem.offsetWidth/2;
+        if(left < 0) left = 0;
+        let top = bcr.top - elem.offsetHeight - 5;
+        
+        console.log(left+ ',' + top);
+        if(top < 0) top = bcr.top + target.offsetHeight + 5;
+
+
+        elem.style.left = left + 'px';
+        elem.style.top = top + 'px';
+    });
+    document.addEventListener('mouseout', function(event){
+        let target = event.target;
+        let toolTip = event.target.dataset.tooltip;
+
+        if(!toolTip) return ;
+
+        document.querySelector('.tooltip').remove();
+
+    });
+  </script>
+
+</body>
+</html>
