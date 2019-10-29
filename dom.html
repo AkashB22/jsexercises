@@ -1,7 +1,8 @@
 <div id="outer"></div>
 
 <script>
-let regexp = /Java(Script)|PHP|C\+\+|C/g;
+let str = '...<body style="...">...';
+str = str.replace(/(?<=<body.*>)/, `<h1>Hello</h1>`);
 
-alert("Java JavaScript PHP C++ C".match(regexp)); 
+alert(str); // ...<body style="..."><h1>Hello</h1>...
 </script>
