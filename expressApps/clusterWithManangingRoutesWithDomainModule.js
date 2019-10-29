@@ -16,6 +16,7 @@ if(cluster.isMaster){
     numSlavesRunning--;
     if(numSlavesRunning < numProcess){
       cluster.fork();
+      numSlavesRunning++;
     }
   })
 } else{
